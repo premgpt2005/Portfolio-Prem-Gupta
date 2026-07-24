@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prem Gupta — Data Analyst / AI-ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1220;
+    --bg-panel:#0f1a2c;
+    --bg-panel-2:#111d31;
+    --line:rgba(233,237,245,0.09);
+    --line-strong:rgba(233,237,245,0.16);
+    --text:#e9edf5;
+    --text-dim:#8b96ac;
+    --text-dim-2:#5d6883;
+    --amber:#e8a33d;
+    --teal:#5fd4c4;
+    --radius:2px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    background-attachment:fixed;
+  }
+
+  ::selection{background:var(--amber);color:#0b1220;}
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px;height:1px;
+    background:var(--amber);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------------- NAV ---------------- */
+  header.topbar{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(11,18,32,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;max-width:1120px;margin:0 auto;
+  }
+  .brand{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.9rem;
+    color:var(--text);
+    display:flex;align-items:center;gap:8px;
+  }
+  .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(95,212,196,0.15);}
+  nav.links{display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text-dim);}
+  nav.links a{transition:color .15s ease;}
+  nav.links a:hover{color:var(--amber);}
+
+  /* ---------------- HERO ---------------- */
+  section.hero{
+    padding:104px 0 88px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:start;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,5vw,4.2rem);
+    line-height:1.02;
+    margin:18px 0 10px;
+  }
+  .hero h1 span{color:var(--amber);}
+  .role-line{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:1rem;
+    color:var(--teal);
+    margin-bottom:22px;
+  }
+  .role-line .sep{color:var(--text-dim-2);margin:0 8px;}
+  .hero p.tagline{
+    color:var(--text-dim);
+    font-size:1.02rem;
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.82rem;
+    padding:11px 18px;
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    display:inline-flex;align-items:center;gap:8px;
+    transition:all .15s ease;
+    background:var(--bg-panel);
+  }
+  .btn:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-1px);}
+  .btn.primary{background:var(--amber);color:#0b1220;border-color:var(--amber);font-weight:600;}
+  .btn.primary:hover{background:#f0b559;color:#0b1220;}
+
+  /* terminal / dataframe signature card */
+  .term{
+    background:var(--bg-panel);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .term-head{
+    display:flex;align-items:center;gap:8px;
+    padding:11px 14px;
+    border-bottom:1px solid var(--line);
+    background:var(--bg-panel-2);
+  }
+  .term-head span{width:9px;height:9px;border-radius:50%;background:var(--line-strong);}
+  .term-head .fname{
+    margin-left:8px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--text-dim);
+  }
+  .term-body{padding:20px;font-family:'IBM Plex Mono',monospace;font-size:0.82rem;}
+  .term-body .l1{color:var(--text-dim-2);}
+  .term-body .l2{color:var(--teal);}
+  .term-body .l3{color:var(--text-dim);margin-bottom:14px;}
+  .term-body .cursor{display:inline-block;width:7px;height:14px;background:var(--amber);vertical-align:middle;animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .df-table{width:100%;border-collapse:collapse;margin-top:6px;}
+  .df-table th{
+    text-align:left;font-weight:500;color:var(--text-dim-2);
+    font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;
+    padding:6px 10px;border-bottom:1px solid var(--line-strong);
+  }
+  .df-table td{
+    padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--text);
+  }
+  .df-table tr:last-child td{border-bottom:none;}
+  .df-table td.idx{color:var(--text-dim-2);width:24px;}
+  .df-table td.val{color:var(--amber);text-align:right;font-weight:500;}
+
+  /* ---------------- SECTION SHELL ---------------- */
+  section.block{padding:80px 0;border-bottom:1px solid var(--line);}
+  section.block h2{
+    font-size:1.7rem;
+    margin:10px 0 36px;
+  }
+  section.block:last-of-type{border-bottom:none;}
+
+  /* ---------------- SKILLS ---------------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .skill-col{background:var(--bg);padding:26px 24px;}
+  .skill-col h3{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--text-dim);font-weight:500;margin-bottom:16px;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.76rem;
+    padding:6px 10px;
+    border:1px solid var(--line-strong);
+    border-radius:3px;
+    color:var(--text-dim);
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .chip:hover{border-color:var(--teal);color:var(--teal);}
+
+  /* ---------------- EXPERIENCE (log style) ---------------- */
+  .log-entry{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:28px;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+  }
+  .log-entry:first-child{border-top:none;}
+  .log-time{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.76rem;color:var(--text-dim-2);
+    padding-top:4px;
+  }
+  .log-time .status{
+    display:inline-block;margin-top:10px;
+    font-size:0.68rem;color:var(--teal);
+    border:1px solid rgba(95,212,196,0.35);
+    padding:3px 7px;border-radius:3px;
+  }
+  .log-body h3{font-size:1.15rem;margin-bottom:2px;}
+  .log-org{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:0.82rem;margin-bottom:12px;display:block;}
+  .log-body ul{list-style:none;margin-bottom:14px;}
+  .log-body li{
+    position:relative;padding-left:18px;color:var(--text-dim);font-size:0.94rem;margin-bottom:8px;
+  }
+  .log-body li::before{
+    content:"›";position:absolute;left:0;color:var(--teal);
+  }
+  .log-link{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--text-dim);
+    border-bottom:1px dotted var(--line-strong);padding-bottom:2px;
+  }
+  .log-link:hover{color:var(--amber);border-color:var(--amber);}
+
+  /* ---------------- PROJECTS ---------------- */
+  .proj-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  .proj-card{
+    background:var(--bg);padding:26px 24px;
+    display:flex;flex-direction:column;
+    transition:background .18s ease;
+  }
+  .proj-card:hover{background:var(--bg-panel);}
+  .proj-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--text-dim-2);
+    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;
+  }
+  .proj-card h3{font-size:1.02rem;margin-bottom:10px;line-height:1.3;}
+  .proj-card p{color:var(--text-dim);font-size:0.86rem;margin-bottom:16px;flex-grow:1;}
+  .proj-card .log-link{align-self:flex-start;}
+
+  /* ---------------- CERTS ---------------- */
+  .cert-table{width:100%;border-collapse:collapse;}
+  .cert-table tr{border-top:1px solid var(--line);}
+  .cert-table tr:first-child{border-top:none;}
+  .cert-table td{padding:16px 6px;}
+  .cert-table td.c-idx{
+    font-family:'IBM Plex Mono',monospace;color:var(--text-dim-2);font-size:0.78rem;width:36px;
+  }
+  .cert-table td.c-name{font-weight:500;}
+  .cert-table td.c-org{color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:0.82rem;}
+  .cert-table td.c-link{text-align:right;}
+  .cert-table td.c-link a{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--teal);
+    border-bottom:1px dotted rgba(95,212,196,0.4);padding-bottom:2px;
+  }
+  .cert-table td.c-link a:hover{color:var(--amber);border-color:var(--amber);}
+
+  /* ---------------- FOOTER ---------------- */
+  footer{padding:56px 0 60px;}
+  .footer-row{
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+  }
+  footer p{color:var(--text-dim-2);font-family:'IBM Plex Mono',monospace;font-size:0.76rem;}
+  .footer-links{display:flex;gap:18px;}
+  .footer-links a{color:var(--text-dim);font-size:0.82rem;transition:color .15s ease;}
+  .footer-links a:hover{color:var(--amber);}
+
+  /* ---------------- REVEAL ---------------- */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    .log-entry{grid-template-columns:1fr;gap:8px;}
+    nav.links{display:none;}
+  }
+  @media (max-width:600px){
+    .wrap,.topbar-inner{padding-left:20px;padding-right:20px;}
+    section.hero{padding:76px 0 60px;}
+    section.block{padding:56px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot"></span>prem_gupta</div>
+    <nav class="links">
+      <a href="#skills">skills</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#certificates">certificates</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">portfolio.py → rendered</div>
+      <h1>Prem <span>Gupta</span></h1>
+      <div class="role-line">Data Analyst <span class="sep">/</span> AI-ML Engineer <span class="sep">/</span> B.Tech CSE Student</div>
+      <p class="tagline">Passionate about data storytelling, predictive modeling, and building scalable data pipelines — turning raw tables into decisions.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:premgpt2005@gmail.com">✉ Email me</a>
+        <a class="btn" href="https://linkedin.com/in/prem-gupta-68826a245" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://github.com/premgpt2005" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="term reveal">
+      <div class="term-head">
+        <span></span><span></span><span></span>
+        <span class="fname">profile.sql</span>
+      </div>
+      <div class="term-body">
+        <div class="l1">-- querying candidate profile</div>
+        <div class="l2">SELECT * FROM prem WHERE status = 'open_to_work';<span class="cursor"></span></div>
+        <div class="l3">-- 4 rows returned</div>
+        <table class="df-table">
+          <thead>
+            <tr><th></th><th>metric</th><th>value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="idx">0</td><td>internships</td><td class="val">2</td></tr>
+            <tr><td class="idx">1</td><td>projects</td><td class="val">6</td></tr>
+            <tr><td class="idx">2</td><td>certificates</td><td class="val">4</td></tr>
+            <tr><td class="idx">3</td><td>batch</td><td class="val">2027</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block reveal" id="skills">
+  <div class="wrap">
+    <div class="eyebrow">01 — technical skills</div>
+    <h2>What I build with</h2>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h3>Languages & Frameworks</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">PostgreSQL</span><span class="chip">R</span>
+          <span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Scikit-Learn</span>
+          <span class="chip">SciPy</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h3>Tools & Platforms</h3>
+        <div class="chips">
+          <span class="chip">Power BI</span><span class="chip">Excel</span>
+          <span class="chip">Jupyter Notebook</span><span class="chip">Git</span><span class="chip">GitHub</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h3>Core Competencies</h3>
+        <div class="chips">
+          <span class="chip">Machine Learning</span><span class="chip">Generative AI</span>
+          <span class="chip">EDA</span><span class="chip">Data Visualization</span>
+          <span class="chip">A/B Testing</span><span class="chip">Predictive Modeling</span>
+          <span class="chip">Data Wrangling</span><span class="chip">Statistical Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block reveal" id="experience">
+  <div class="wrap">
+    <div class="eyebrow">02 — virtual experience</div>
+    <h2>Where I've worked</h2>
+
+    <div class="log-entry">
+      <div class="log-time">June 2026<br><span class="status">completed</span></div>
+      <div class="log-body">
+        <h3>GenAI Data Analytics Virtual Internship</h3>
+        <span class="log-org">Tata iQ</span>
+        <ul>
+          <li>Leveraged Generative AI tools to conduct EDA and architect a no-code predictive modeling framework for customer delinquency risk.</li>
+          <li>Designed an automated collections strategy utilizing agentic AI with ethical AI principles.</li>
+        </ul>
+        <a class="log-link" href="https://github.com/premgpt2005/AI-Powered-Credit-Risk-Analytics" target="_blank" rel="noopener">→ view work repository</a>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-time">May – Jun 2026<br><span class="status">completed</span></div>
+      <div class="log-body">
+        <h3>Data Analytics Internship</h3>
+        <span class="log-org">Codec Technologies</span>
+        <ul>
+          <li>Executed real-world ML projects including IBM HR Attrition Analysis and Customer Churn Prediction.</li>
+          <li>Performed feature engineering and predictive modeling using Python, Excel, and Power BI.</li>
+        </ul>
+        <a class="log-link" href="https://github.com/premgpt2005/CodecTechnologies-Internship" target="_blank" rel="noopener">→ view work repository</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block reveal" id="projects">
+  <div class="wrap">
+    <div class="eyebrow">03 — projects</div>
+    <h2>Things I've shipped</h2>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-tag">Python · Pandas · Scikit-learn · EDA</div>
+        <h3>E-Commerce Sales Prediction & A/B Testing</h3>
+        <p>End-to-end workflow for daily sales forecasting, including data cleaning and feature extraction. Built ML pipelines and an A/B testing simulation to statistically evaluate prediction errors.</p>
+        <a class="log-link" href="https://github.com/premgpt2005/Predictive-Modeling-A-B-Testing-for-E-Commerce-Sales" target="_blank" rel="noopener">→ view repository</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag">Python · Machine Learning · Scikit-Learn</div>
+        <h3>IBM HR Attrition Analytics Prediction</h3>
+        <p>Predictive models to forecast employee attrition and identify root causes of turnover, with feature engineering and statistical analysis for HR retention insights.</p>
+        <a class="log-link" href="https://github.com/premgpt2005/IBM-HR-Attrition-Analytics-Prediction" target="_blank" rel="noopener">→ view repository</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag">PostgreSQL</div>
+        <h3>Advanced SQL Data Cleaning & Analysis</h3>
+        <p>Cleaned and normalized a 3,000+ row dataset — removing duplicates, fixing nulls, standardizing dates — and authored 15+ complex queries using CTEs, window functions, and subqueries.</p>
+        <a class="log-link" href="https://github.com/premgpt2005/SQL-Data-Cleaning-and-EDA" target="_blank" rel="noopener">→ view repository</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag">Power BI</div>
+        <h3>HR Attrition Analytics Dashboard</h3>
+        <p>Interactive dashboard analyzing 1,470 employees to track attrition across departments and demographics, surfacing turnover drivers tied to salary, tenure, and job level.</p>
+        <a class="log-link" href="https://github.com/premgpt2005/IBM-HR-Attrition-Analytics-Dashboard" target="_blank" rel="noopener">→ view repository</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag">Python · Data Visualization · Predictive Modeling</div>
+        <h3>Customer Churn Analytics</h3>
+        <p>Predictive modeling to identify at-risk customers and forecast churn, with EDA uncovering key business insights and retention drivers.</p>
+        <a class="log-link" href="https://github.com/premgpt2005/Customer-Churn-Analytics" target="_blank" rel="noopener">→ view repository</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag">Excel · Pivot Tables</div>
+        <h3>Netflix Subscription Analytics</h3>
+        <p>Analyzed large-scale subscription datasets using advanced Excel functions to map user growth and revenue trends, with pivot tables evaluating regional viewing preferences and churn.</p>
+        <a class="log-link" href="https://github.com/premgpt2005/Netflix-Subscription-Analytics-Using-Excel" target="_blank" rel="noopener">→ view repository</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="block reveal" id="certificates">
+  <div class="wrap">
+    <div class="eyebrow">04 — certificates</div>
+    <h2>Verified credentials</h2>
+    <table class="cert-table">
+      <tbody>
+        <tr>
+          <td class="c-idx">01</td>
+          <td class="c-name">Machine Learning with Python</td>
+          <td class="c-org">IBM</td>
+          <td class="c-link"><a href="https://coursera.org/share/2bbf1cb9a83ac894bb8c9b21ae0644e9" target="_blank" rel="noopener">view ↗</a></td>
+        </tr>
+        <tr>
+          <td class="c-idx">02</td>
+          <td class="c-name">Mastering Power BI: Data to Dashboard</td>
+          <td class="c-org">Udemy</td>
+          <td class="c-link"><a href="https://www.udemy.com/certificate/UC-7c2fe6cf-f076-4eee-8d0f-97697921371b/" target="_blank" rel="noopener">view ↗</a></td>
+        </tr>
+        <tr>
+          <td class="c-idx">03</td>
+          <td class="c-name">Python (Basic) Certification</td>
+          <td class="c-org">HackerRank</td>
+          <td class="c-link"><a href="https://www.hackerrank.com/certificates/6487955c6ddc" target="_blank" rel="noopener">view ↗</a></td>
+        </tr>
+        <tr>
+          <td class="c-idx">04</td>
+          <td class="c-name">SQL (Intermediate) Certification</td>
+          <td class="c-org">HackerRank</td>
+          <td class="c-link"><a href="https://www.hackerrank.com/certificates/8cc5f41b2ed2" target="_blank" rel="noopener">view ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <p>© 2026 Prem Gupta — built with HTML &amp; CSS</p>
+    <div class="footer-links">
+      <a href="mailto:premgpt2005@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/prem-gupta-68826a245" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/premgpt2005" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
