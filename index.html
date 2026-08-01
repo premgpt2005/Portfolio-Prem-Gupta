@@ -1,541 +1,448 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prem Gupta — Data Analyst / AI-ML Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0b1220;
-    --bg-panel:#0f1a2c;
-    --bg-panel-2:#111d31;
-    --line:rgba(233,237,245,0.09);
-    --line-strong:rgba(233,237,245,0.16);
-    --text:#e9edf5;
-    --text-dim:#8b96ac;
-    --text-dim-2:#5d6883;
-    --amber:#e8a33d;
-    --teal:#5fd4c4;
-    --radius:2px;
-  }
-
-  *{margin:0;padding:0;box-sizing:border-box;}
-
-  html{scroll-behavior:smooth;}
-
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',system-ui,sans-serif;
-    line-height:1.55;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:64px 64px;
-    background-attachment:fixed;
-  }
-
-  ::selection{background:var(--amber);color:#0b1220;}
-
-  a{color:inherit;text-decoration:none;}
-
-  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
-
-  .mono{font-family:'IBM Plex Mono',monospace;}
-
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.72rem;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--amber);
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:16px;height:1px;
-    background:var(--amber);
-    display:inline-block;
-  }
-
-  h1,h2,h3{
-    font-family:'Space Grotesk',sans-serif;
-    font-weight:600;
-    letter-spacing:-0.01em;
-  }
-
-  /* ---------------- NAV ---------------- */
-  header.topbar{
-    position:sticky;top:0;z-index:50;
-    backdrop-filter:blur(10px);
-    background:rgba(11,18,32,0.82);
-    border-bottom:1px solid var(--line);
-  }
-  .topbar-inner{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:18px 32px;max-width:1120px;margin:0 auto;
-  }
-  .brand{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.9rem;
-    color:var(--text);
-    display:flex;align-items:center;gap:8px;
-  }
-  .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(95,212,196,0.15);}
-  nav.links{display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text-dim);}
-  nav.links a{transition:color .15s ease;}
-  nav.links a:hover{color:var(--amber);}
-
-  /* ---------------- HERO ---------------- */
-  section.hero{
-    padding:104px 0 88px;
-    border-bottom:1px solid var(--line);
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.15fr 0.85fr;
-    gap:56px;
-    align-items:start;
-  }
-  .hero h1{
-    font-size:clamp(2.6rem,5vw,4.2rem);
-    line-height:1.02;
-    margin:18px 0 10px;
-  }
-  .hero h1 span{color:var(--amber);}
-  .role-line{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:1rem;
-    color:var(--teal);
-    margin-bottom:22px;
-  }
-  .role-line .sep{color:var(--text-dim-2);margin:0 8px;}
-  .hero p.tagline{
-    color:var(--text-dim);
-    font-size:1.02rem;
-    max-width:46ch;
-    margin-bottom:34px;
-  }
-  .cta-row{display:flex;gap:12px;flex-wrap:wrap;}
-  .btn{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.82rem;
-    padding:11px 18px;
-    border:1px solid var(--line-strong);
-    border-radius:var(--radius);
-    display:inline-flex;align-items:center;gap:8px;
-    transition:all .15s ease;
-    background:var(--bg-panel);
-  }
-  .btn:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-1px);}
-  .btn.primary{background:var(--amber);color:#0b1220;border-color:var(--amber);font-weight:600;}
-  .btn.primary:hover{background:#f0b559;color:#0b1220;}
-
-  /* terminal / dataframe signature card */
-  .term{
-    background:var(--bg-panel);
-    border:1px solid var(--line-strong);
-    border-radius:6px;
-    overflow:hidden;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
-  }
-  .term-head{
-    display:flex;align-items:center;gap:8px;
-    padding:11px 14px;
-    border-bottom:1px solid var(--line);
-    background:var(--bg-panel-2);
-  }
-  .term-head span{width:9px;height:9px;border-radius:50%;background:var(--line-strong);}
-  .term-head .fname{
-    margin-left:8px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--text-dim);
-  }
-  .term-body{padding:20px;font-family:'IBM Plex Mono',monospace;font-size:0.82rem;}
-  .term-body .l1{color:var(--text-dim-2);}
-  .term-body .l2{color:var(--teal);}
-  .term-body .l3{color:var(--text-dim);margin-bottom:14px;}
-  .term-body .cursor{display:inline-block;width:7px;height:14px;background:var(--amber);vertical-align:middle;animation:blink 1s step-end infinite;}
-  @keyframes blink{50%{opacity:0;}}
-
-  .df-table{width:100%;border-collapse:collapse;margin-top:6px;}
-  .df-table th{
-    text-align:left;font-weight:500;color:var(--text-dim-2);
-    font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;
-    padding:6px 10px;border-bottom:1px solid var(--line-strong);
-  }
-  .df-table td{
-    padding:8px 10px;border-bottom:1px solid var(--line);
-    color:var(--text);
-  }
-  .df-table tr:last-child td{border-bottom:none;}
-  .df-table td.idx{color:var(--text-dim-2);width:24px;}
-  .df-table td.val{color:var(--amber);text-align:right;font-weight:500;}
-
-  /* ---------------- SECTION SHELL ---------------- */
-  section.block{padding:80px 0;border-bottom:1px solid var(--line);}
-  section.block h2{
-    font-size:1.7rem;
-    margin:10px 0 36px;
-  }
-  section.block:last-of-type{border-bottom:none;}
-
-  /* ---------------- SKILLS ---------------- */
-  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .skill-col{background:var(--bg);padding:26px 24px;}
-  .skill-col h3{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;
-    color:var(--text-dim);font-weight:500;margin-bottom:16px;
-  }
-  .chips{display:flex;flex-wrap:wrap;gap:8px;}
-  .chip{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.76rem;
-    padding:6px 10px;
-    border:1px solid var(--line-strong);
-    border-radius:3px;
-    color:var(--text-dim);
-    transition:border-color .15s ease, color .15s ease;
-  }
-  .chip:hover{border-color:var(--teal);color:var(--teal);}
-
-  /* ---------------- EXPERIENCE (log style) ---------------- */
-  .log-entry{
-    display:grid;
-    grid-template-columns:140px 1fr;
-    gap:28px;
-    padding:28px 0;
-    border-top:1px solid var(--line);
-  }
-  .log-entry:first-child{border-top:none;}
-  .log-time{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.76rem;color:var(--text-dim-2);
-    padding-top:4px;
-  }
-  .log-time .status{
-    display:inline-block;margin-top:10px;
-    font-size:0.68rem;color:var(--teal);
-    border:1px solid rgba(95,212,196,0.35);
-    padding:3px 7px;border-radius:3px;
-  }
-  .log-body h3{font-size:1.15rem;margin-bottom:2px;}
-  .log-org{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:0.82rem;margin-bottom:12px;display:block;}
-  .log-body ul{list-style:none;margin-bottom:14px;}
-  .log-body li{
-    position:relative;padding-left:18px;color:var(--text-dim);font-size:0.94rem;margin-bottom:8px;
-  }
-  .log-body li::before{
-    content:"›";position:absolute;left:0;color:var(--teal);
-  }
-  .log-link{
-    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--text-dim);
-    border-bottom:1px dotted var(--line-strong);padding-bottom:2px;
-  }
-  .log-link:hover{color:var(--amber);border-color:var(--amber);}
-
-  /* ---------------- PROJECTS ---------------- */
-  .proj-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-    background:var(--line);border:1px solid var(--line);
-  }
-  .proj-card{
-    background:var(--bg);padding:26px 24px;
-    display:flex;flex-direction:column;
-    transition:background .18s ease;
-  }
-  .proj-card:hover{background:var(--bg-panel);}
-  .proj-tag{
-    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--text-dim-2);
-    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;
-  }
-  .proj-card h3{font-size:1.02rem;margin-bottom:10px;line-height:1.3;}
-  .proj-card p{color:var(--text-dim);font-size:0.86rem;margin-bottom:16px;flex-grow:1;}
-  .proj-card .log-link{align-self:flex-start;}
-
-  /* ---------------- CERTS ---------------- */
-  .cert-table{width:100%;border-collapse:collapse;}
-  .cert-table tr{border-top:1px solid var(--line);}
-  .cert-table tr:first-child{border-top:none;}
-  .cert-table td{padding:16px 6px;}
-  .cert-table td.c-idx{
-    font-family:'IBM Plex Mono',monospace;color:var(--text-dim-2);font-size:0.78rem;width:36px;
-  }
-  .cert-table td.c-name{font-weight:500;}
-  .cert-table td.c-org{color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:0.82rem;}
-  .cert-table td.c-link{text-align:right;}
-  .cert-table td.c-link a{
-    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--teal);
-    border-bottom:1px dotted rgba(95,212,196,0.4);padding-bottom:2px;
-  }
-  .cert-table td.c-link a:hover{color:var(--amber);border-color:var(--amber);}
-
-  /* ---------------- FOOTER ---------------- */
-  footer{padding:56px 0 60px;}
-  .footer-row{
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
-  }
-  footer p{color:var(--text-dim-2);font-family:'IBM Plex Mono',monospace;font-size:0.76rem;}
-  .footer-links{display:flex;gap:18px;}
-  .footer-links a{color:var(--text-dim);font-size:0.82rem;transition:color .15s ease;}
-  .footer-links a:hover{color:var(--amber);}
-
-  /* ---------------- REVEAL ---------------- */
-  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1;transform:translateY(0);}
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;transition:none !important;}
-    .reveal{opacity:1;transform:none;}
-  }
-
-  /* ---------------- RESPONSIVE ---------------- */
-  @media (max-width:900px){
-    .hero-grid{grid-template-columns:1fr;}
-    .skills-grid{grid-template-columns:1fr;}
-    .proj-grid{grid-template-columns:1fr;}
-    .log-entry{grid-template-columns:1fr;gap:8px;}
-    nav.links{display:none;}
-  }
-  @media (max-width:600px){
-    .wrap,.topbar-inner{padding-left:20px;padding-right:20px;}
-    section.hero{padding:76px 0 60px;}
-    section.block{padding:56px 0;}
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prem Gupta | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6', // blue-500
+                        secondary: '#8b5cf6', // violet-500
+                        dark: '#0f172a', // slate-900
+                        darker: '#020617', // slate-950
+                        light: '#f8fafc', // slate-50
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617; /* Slate-950 */
+            color: #f8fafc; /* Slate-50 */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .skill-tag {
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4);
+            border-color: #3b82f6;
+        }
+        .project-card {
+            transition: all 0.4s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            border-color: #8b5cf6;
+        }
+    </style>
 </head>
-<body>
+<body class="antialiased selection:bg-primary selection:text-white relative">
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand"><span class="dot"></span>prem_gupta</div>
-    <nav class="links">
-      <a href="#skills">skills</a>
-      <a href="#experience">experience</a>
-      <a href="#projects">projects</a>
-      <a href="#certificates">certificates</a>
+    <nav class="fixed w-full z-50 glass-panel border-b-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold tracking-tighter gradient-text">PG.</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="text-gray-300 hover:text-white transition px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#skills" class="text-gray-300 hover:text-white transition px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#projects" class="text-gray-300 hover:text-white transition px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#experience" class="text-gray-300 hover:text-white transition px-3 py-2 rounded-md text-sm font-medium">Experience & Edu</a>
+                        <a href="#contact" class="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition ml-4">Contact Me</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#skills" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#experience" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experience & Edu</a>
+                <a href="#contact" class="text-primary font-bold block px-3 py-2 rounded-md text-base">Contact Me</a>
+            </div>
+        </div>
     </nav>
-  </div>
-</header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>Prem <span>Gupta</span></h1>
-      <div class="role-line">Data Analyst <span class="sep">/</span> AI-ML Engineer <span class="sep">/</span> B.Tech CSE Student</div>
-      <p class="tagline">Passionate about data storytelling, predictive modeling, and building scalable data pipelines — turning raw tables into decisions.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="mailto:premgpt2005@gmail.com">✉ Email me</a>
-        <a class="btn" href="https://linkedin.com/in/prem-gupta-68826a245" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="btn" href="https://github.com/premgpt2005" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
-    </div>
+    <section id="home" class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 max-w-7xl mx-auto relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+        <div class="absolute top-20 right-10 w-72 h-72 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+        
+        <div class="text-center relative z-10">
+            <h2 class="text-primary font-medium tracking-wide uppercase text-sm md:text-base mb-3">Welcome to my portfolio</h2>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                Hi, I'm <br class="md:hidden" /> <span class="gradient-text">Prem Gupta</span>
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-400 mb-8 font-light max-w-3xl mx-auto">
+                B. Tech Computer Science (AI/ML) Student
+            </p>
+            <p class="mt-2 text-base text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Passionate about data analysis, machine learning, and exploring generative AI. I build ML models, cloud dashboards, and AI applications to solve real-world problems.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#projects" class="px-8 py-3 rounded-full bg-primary hover:bg-blue-600 text-white font-medium transition duration-300 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    View My Work <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#contact" class="px-8 py-3 rounded-full bg-transparent border border-gray-600 hover:border-gray-300 text-white font-medium transition duration-300 flex items-center justify-center">
+                    Get In Touch
+                </a>
+            </div>
 
-    <div class="term reveal">
-      <div class="term-head">
-        <span></span><span></span><span></span>
-        <span class="fname">profile.sql</span>
-      </div>
-      <div class="term-body">
-        <div class="l1">-- querying candidate profile</div>
-        <div class="l2">SELECT * FROM prem WHERE status = 'open_to_work';<span class="cursor"></span></div>
-        <div class="l3">-- 4 rows returned</div>
-        <table class="df-table">
-          <thead>
-            <tr><th></th><th>metric</th><th>value</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="idx">0</td><td>internships</td><td class="val">2</td></tr>
-            <tr><td class="idx">1</td><td>projects</td><td class="val">6</td></tr>
-            <tr><td class="idx">2</td><td>certificates</td><td class="val">4</td></tr>
-            <tr><td class="idx">3</td><td>batch</td><td class="val">2027</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block reveal" id="skills">
-  <div class="wrap">
-    <div class="eyebrow">01 — technical skills</div>
-    <h2>What I build with</h2>
-    <div class="skills-grid">
-      <div class="skill-col">
-        <h3>Languages & Frameworks</h3>
-        <div class="chips">
-          <span class="chip">Python</span><span class="chip">PostgreSQL</span><span class="chip">R</span>
-          <span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Scikit-Learn</span>
-          <span class="chip">SciPy</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
+            <!-- Social Links -->
+            <div class="mt-12 flex justify-center space-x-6">
+                <a href="https://github.com/premgpt2005" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/prem-gupta-68826a245" target="_blank" class="text-gray-400 hover:text-primary text-2xl transition duration-300"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:premgpt2005@gmail.com" class="text-gray-400 hover:text-red-400 text-2xl transition duration-300"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
-      </div>
-      <div class="skill-col">
-        <h3>Tools & Platforms</h3>
-        <div class="chips">
-          <span class="chip">Power BI</span><span class="chip">Excel</span>
-          <span class="chip">Jupyter Notebook</span><span class="chip">Git</span><span class="chip">GitHub</span>
+    </section>
+
+    <section id="about" class="py-20 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold inline-block border-b-4 border-primary pb-2">About Me</h2>
+            </div>
+            <div class="bg-gray-900/50 rounded-2xl p-8 md:p-12 border border-gray-800 backdrop-blur-sm max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-4xl shadow-xl flex-shrink-0">
+                        <i class="fas fa-user-astronaut text-white/80"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-white">Summary</h3>
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            I am a dedicated B. Tech student specializing in Computer Science (Artificial Intelligence & Machine Learning). I have hands-on experience in Python, SQL, and cloud platforms acquired through internships and personal projects. My true passion lies in data analysis, machine learning algorithms, and exploring the capabilities of Generative AI. 
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            I enjoy building intelligent ML models, interactive cloud dashboards, and innovative AI applications. Continuously learning and adapting, I am currently expanding my expertise in Python, PostgreSQL, Google Cloud Platform (GCP), and Large Language Model (LLM) integrations.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="skill-col">
-        <h3>Core Competencies</h3>
-        <div class="chips">
-          <span class="chip">Machine Learning</span><span class="chip">Generative AI</span>
-          <span class="chip">EDA</span><span class="chip">Data Visualization</span>
-          <span class="chip">A/B Testing</span><span class="chip">Predictive Modeling</span>
-          <span class="chip">Data Wrangling</span><span class="chip">Statistical Analysis</span>
+    </section>
+
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold inline-block border-b-4 border-secondary pb-2">Technical Skills</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Programming Languages -->
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="text-primary text-3xl mb-4"><i class="fas fa-code"></i></div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Languages</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Python</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">ANSI SQL</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">R</span>
+                    </div>
+                </div>
+
+                <!-- Frameworks & Libraries -->
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="text-secondary text-3xl mb-4"><i class="fas fa-cubes"></i></div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Frameworks</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">NumPy</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Pandas</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Scikit-Learn</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">SciPy</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Streamlit</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Matplotlib</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Seaborn</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">LangChain</span>
+                    </div>
+                </div>
+
+                <!-- Core Technical Skills -->
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="text-green-500 text-3xl mb-4"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Core Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Machine Learning</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">EDA</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Feature Engineering</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Predictive Modeling</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">A/B Testing</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Prompt Engineering</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">LLM APIs</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Cloud Computing</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="text-yellow-500 text-3xl mb-4"><i class="fas fa-tools"></i></div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Tools & DBs</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">PostgreSQL</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">MySQL</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">GCP (Cloud Run, Storage)</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Git / GitHub</span>
+                        <span class="skill-tag px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-sm text-gray-300 cursor-default">Jupyter Notebook</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="block reveal" id="experience">
-  <div class="wrap">
-    <div class="eyebrow">02 — virtual experience</div>
-    <h2>Where I've worked</h2>
+    <section id="projects" class="py-20 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold inline-block border-b-4 border-primary pb-2">Featured Projects</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="project-card glass-panel rounded-2xl overflow-hidden border border-gray-800 flex flex-col h-full">
+                    <div class="h-48 bg-gradient-to-r from-blue-900 to-indigo-900 relative">
+                        <div class="absolute inset-0 flex items-center justify-center text-5xl text-white/20">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Cloud-Hosted Live Sales Dashboard</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-1">
+                            Built and deployed an interactive Streamlit dashboard on GCP Cloud Run with Cloud Storage integration. Visualized KPIs, sales trends, regional performance, and real-time filtered business metrics.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-800">
+                            <span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">GCP</span>
+                            <span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">Streamlit</span>
+                            <span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">Python</span>
+                            <span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">Pandas</span>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="log-entry">
-      <div class="log-time">June 2026<br><span class="status">completed</span></div>
-      <div class="log-body">
-        <h3>GenAI Data Analytics Virtual Internship</h3>
-        <span class="log-org">Tata iQ</span>
-        <ul>
-          <li>Leveraged Generative AI tools to conduct EDA and architect a no-code predictive modeling framework for customer delinquency risk.</li>
-          <li>Designed an automated collections strategy utilizing agentic AI with ethical AI principles.</li>
-        </ul>
-        <a class="log-link" href="https://github.com/premgpt2005/AI-Powered-Credit-Risk-Analytics" target="_blank" rel="noopener">→ view work repository</a>
-      </div>
-    </div>
+                <!-- Project 2 -->
+                <div class="project-card glass-panel rounded-2xl overflow-hidden border border-gray-800 flex flex-col h-full">
+                    <div class="h-48 bg-gradient-to-r from-purple-900 to-pink-900 relative">
+                        <div class="absolute inset-0 flex items-center justify-center text-5xl text-white/20">
+                            <i class="fas fa-users-viewfinder"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Customer Segmentation & Analysis</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-1">
+                            Performed Exploratory Data Analysis (EDA) and RFM analysis on 50K customer records using PostgreSQL and Python. Engineered a K-Means clustering model to segment customers and generate actionable, targeted marketing insights.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-800">
+                            <span class="text-xs text-secondary bg-secondary/10 px-2 py-1 rounded">Scikit-Learn</span>
+                            <span class="text-xs text-secondary bg-secondary/10 px-2 py-1 rounded">PostgreSQL</span>
+                            <span class="text-xs text-secondary bg-secondary/10 px-2 py-1 rounded">Python</span>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="log-entry">
-      <div class="log-time">May – Jun 2026<br><span class="status">completed</span></div>
-      <div class="log-body">
-        <h3>Data Analytics Internship</h3>
-        <span class="log-org">Codec Technologies</span>
-        <ul>
-          <li>Executed real-world ML projects including IBM HR Attrition Analysis and Customer Churn Prediction.</li>
-          <li>Performed feature engineering and predictive modeling using Python, Excel, and Power BI.</li>
-        </ul>
-        <a class="log-link" href="https://github.com/premgpt2005/CodecTechnologies-Internship" target="_blank" rel="noopener">→ view work repository</a>
-      </div>
-    </div>
-  </div>
-</section>
+                <!-- Project 3 -->
+                <div class="project-card glass-panel rounded-2xl overflow-hidden border border-gray-800 flex flex-col h-full">
+                    <div class="h-48 bg-gradient-to-r from-emerald-900 to-teal-900 relative">
+                        <div class="absolute inset-0 flex items-center justify-center text-5xl text-white/20">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">AI Chat with PDF Documents</h3>
+                        <p class="text-gray-400 text-sm mb-4 flex-1">
+                            Developed a GenAI-powered Streamlit application using LangChain and OpenAI API. The system processes PDF documents through loading, chunking, and embedding to facilitate contextual conversational question answering.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-800">
+                            <span class="text-xs text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded">LangChain</span>
+                            <span class="text-xs text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded">OpenAI API</span>
+                            <span class="text-xs text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded">Streamlit</span>
+                        </div>
+                    </div>
+                </div>
 
-<section class="block reveal" id="projects">
-  <div class="wrap">
-    <div class="eyebrow">03 — projects</div>
-    <h2>Things I've shipped</h2>
-    <div class="proj-grid">
+            </div>
+        </div>
+    </section>
 
-      <div class="proj-card">
-        <div class="proj-tag">Python · Pandas · Scikit-learn · EDA</div>
-        <h3>E-Commerce Sales Prediction & A/B Testing</h3>
-        <p>End-to-end workflow for daily sales forecasting, including data cleaning and feature extraction. Built ML pipelines and an A/B testing simulation to statistically evaluate prediction errors.</p>
-        <a class="log-link" href="https://github.com/premgpt2005/Predictive-Modeling-A-B-Testing-for-E-Commerce-Sales" target="_blank" rel="noopener">→ view repository</a>
-      </div>
+    <section id="experience" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Left Column: Experience & Extracurriculars -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-8 inline-block border-b-2 border-primary pb-2"><i class="fas fa-briefcase text-primary mr-2"></i> Experience</h2>
+                    
+                    <!-- Exp Item -->
+                    <div class="relative pl-8 border-l border-gray-700 pb-10">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-gray-900"></div>
+                        <div class="mb-1 text-sm text-primary font-medium">05/2026 - 06/2026</div>
+                        <h3 class="text-xl font-bold text-white">Data Analytics Intern</h3>
+                        <div class="text-gray-400 mb-3">Codec Technologies</div>
+                        <ul class="text-sm text-gray-300 list-disc list-inside space-y-1">
+                            <li>Executed Machine Learning projects including IBM HR Attrition Analysis and Customer Churn Prediction.</li>
+                            <li>Performed feature engineering and predictive modeling utilizing Scikit-Learn to improve model accuracy.</li>
+                        </ul>
+                    </div>
 
-      <div class="proj-card">
-        <div class="proj-tag">Python · Machine Learning · Scikit-Learn</div>
-        <h3>IBM HR Attrition Analytics Prediction</h3>
-        <p>Predictive models to forecast employee attrition and identify root causes of turnover, with feature engineering and statistical analysis for HR retention insights.</p>
-        <a class="log-link" href="https://github.com/premgpt2005/IBM-HR-Attrition-Analytics-Prediction" target="_blank" rel="noopener">→ view repository</a>
-      </div>
+                    <h2 class="text-2xl font-bold mb-8 mt-4 inline-block border-b-2 border-secondary pb-2"><i class="fas fa-users text-secondary mr-2"></i> Extracurriculars</h2>
+                    
+                    <div class="glass-panel p-5 rounded-xl border border-gray-800 mb-4">
+                        <h3 class="text-lg font-bold text-white">Magnanimous Club Graphic Design</h3>
+                        <p class="text-sm text-gray-400">Volunteer Coordinator</p>
+                    </div>
+                    
+                    <div class="glass-panel p-5 rounded-xl border border-gray-800">
+                        <h3 class="text-lg font-bold text-white">CGH Foundation</h3>
+                        <p class="text-sm text-gray-400">Social Media Strategy & Content</p>
+                    </div>
+                </div>
 
-      <div class="proj-card">
-        <div class="proj-tag">PostgreSQL</div>
-        <h3>Advanced SQL Data Cleaning & Analysis</h3>
-        <p>Cleaned and normalized a 3,000+ row dataset — removing duplicates, fixing nulls, standardizing dates — and authored 15+ complex queries using CTEs, window functions, and subqueries.</p>
-        <a class="log-link" href="https://github.com/premgpt2005/SQL-Data-Cleaning-and-EDA" target="_blank" rel="noopener">→ view repository</a>
-      </div>
+                <!-- Right Column: Education & Certifications -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-8 inline-block border-b-2 border-primary pb-2"><i class="fas fa-graduation-cap text-primary mr-2"></i> Education</h2>
+                    
+                    <!-- Edu Item 1 -->
+                    <div class="relative pl-8 border-l border-gray-700 pb-8">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-gray-900"></div>
+                        <div class="mb-1 text-sm text-primary font-medium">10/2023 - Present</div>
+                        <h3 class="text-lg font-bold text-white">B.Tech in Computer Science (AI/ML)</h3>
+                        <div class="text-gray-400 text-sm">Pranveer Singh Institute of Technology</div>
+                    </div>
 
-      <div class="proj-card">
-        <div class="proj-tag">Power BI</div>
-        <h3>HR Attrition Analytics Dashboard</h3>
-        <p>Interactive dashboard analyzing 1,470 employees to track attrition across departments and demographics, surfacing turnover drivers tied to salary, tenure, and job level.</p>
-        <a class="log-link" href="https://github.com/premgpt2005/IBM-HR-Attrition-Analytics-Dashboard" target="_blank" rel="noopener">→ view repository</a>
-      </div>
+                    <!-- Edu Item 2 -->
+                    <div class="relative pl-8 border-l border-gray-700 pb-8">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gray-600 ring-4 ring-gray-900"></div>
+                        <div class="mb-1 text-sm text-gray-400 font-medium">03/2022 - 04/2023</div>
+                        <h3 class="text-lg font-bold text-white">12th Grade</h3>
+                        <div class="text-gray-400 text-sm">Allenhouse Public School</div>
+                    </div>
 
-      <div class="proj-card">
-        <div class="proj-tag">Python · Data Visualization · Predictive Modeling</div>
-        <h3>Customer Churn Analytics</h3>
-        <p>Predictive modeling to identify at-risk customers and forecast churn, with EDA uncovering key business insights and retention drivers.</p>
-        <a class="log-link" href="https://github.com/premgpt2005/Customer-Churn-Analytics" target="_blank" rel="noopener">→ view repository</a>
-      </div>
+                    <!-- Edu Item 3 -->
+                    <div class="relative pl-8 border-l border-gray-700 pb-8">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-gray-600 ring-4 ring-gray-900"></div>
+                        <div class="mb-1 text-sm text-gray-400 font-medium">03/2020 - 04/2021</div>
+                        <h3 class="text-lg font-bold text-white">10th Grade</h3>
+                        <div class="text-gray-400 text-sm">Allenhouse Public School</div>
+                    </div>
 
-      <div class="proj-card">
-        <div class="proj-tag">Excel · Pivot Tables</div>
-        <h3>Netflix Subscription Analytics</h3>
-        <p>Analyzed large-scale subscription datasets using advanced Excel functions to map user growth and revenue trends, with pivot tables evaluating regional viewing preferences and churn.</p>
-        <a class="log-link" href="https://github.com/premgpt2005/Netflix-Subscription-Analytics-Using-Excel" target="_blank" rel="noopener">→ view repository</a>
-      </div>
+                    <h2 class="text-2xl font-bold mb-6 mt-4 inline-block border-b-2 border-secondary pb-2"><i class="fas fa-certificate text-secondary mr-2"></i> Certifications</h2>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i> IBM Machine Learning with Python <span class="ml-2 text-xs text-gray-500 px-2 py-0.5 bg-gray-800 rounded">Coursera</span>
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i> Cloud Computing <span class="ml-2 text-xs text-gray-500 px-2 py-0.5 bg-gray-800 rounded">Scaler</span>
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i> Python (Basic) Certification <span class="ml-2 text-xs text-gray-500 px-2 py-0.5 bg-gray-800 rounded">Hackerrank</span>
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i> SQL (Intermediate) Certification <span class="ml-2 text-xs text-gray-500 px-2 py-0.5 bg-gray-800 rounded">Scaler</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-    </div>
-  </div>
-</section>
+        </div>
+    </section>
 
-<section class="block reveal" id="certificates">
-  <div class="wrap">
-    <div class="eyebrow">04 — certificates</div>
-    <h2>Verified credentials</h2>
-    <table class="cert-table">
-      <tbody>
-        <tr>
-          <td class="c-idx">01</td>
-          <td class="c-name">Machine Learning with Python</td>
-          <td class="c-org">IBM</td>
-          <td class="c-link"><a href="https://coursera.org/share/2bbf1cb9a83ac894bb8c9b21ae0644e9" target="_blank" rel="noopener">view ↗</a></td>
-        </tr>
-        <tr>
-          <td class="c-idx">02</td>
-          <td class="c-name">Mastering Power BI: Data to Dashboard</td>
-          <td class="c-org">Udemy</td>
-          <td class="c-link"><a href="https://www.udemy.com/certificate/UC-7c2fe6cf-f076-4eee-8d0f-97697921371b/" target="_blank" rel="noopener">view ↗</a></td>
-        </tr>
-        <tr>
-          <td class="c-idx">03</td>
-          <td class="c-name">Python (Basic) Certification</td>
-          <td class="c-org">HackerRank</td>
-          <td class="c-link"><a href="https://www.hackerrank.com/certificates/6487955c6ddc" target="_blank" rel="noopener">view ↗</a></td>
-        </tr>
-        <tr>
-          <td class="c-idx">04</td>
-          <td class="c-name">SQL (Intermediate) Certification</td>
-          <td class="c-org">HackerRank</td>
-          <td class="c-link"><a href="https://www.hackerrank.com/certificates/8cc5f41b2ed2" target="_blank" rel="noopener">view ↗</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <section id="contact" class="py-20 bg-darker border-t border-gray-900">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Let's Connect</h2>
+            <p class="text-gray-400 mb-10 max-w-2xl mx-auto">
+                I'm currently looking for new opportunities to learn and grow in the AI/ML space. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-12">
+                <a href="mailto:premgpt2005@gmail.com" class="flex items-center gap-3 bg-gray-900 hover:bg-gray-800 border border-gray-700 px-6 py-4 rounded-xl transition duration-300 w-full md:w-auto">
+                    <i class="fas fa-envelope text-primary text-xl"></i>
+                    <span class="text-gray-300 font-medium">premgpt2005@gmail.com</span>
+                </a>
+                <a href="tel:+917905440952" class="flex items-center gap-3 bg-gray-900 hover:bg-gray-800 border border-gray-700 px-6 py-4 rounded-xl transition duration-300 w-full md:w-auto">
+                    <i class="fas fa-phone-alt text-primary text-xl"></i>
+                    <span class="text-gray-300 font-medium">7905440952</span>
+                </a>
+            </div>
 
-<footer>
-  <div class="wrap footer-row">
-    <p>© 2026 Prem Gupta — built with HTML &amp; CSS</p>
-    <div class="footer-links">
-      <a href="mailto:premgpt2005@gmail.com">Email</a>
-      <a href="https://linkedin.com/in/prem-gupta-68826a245" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/premgpt2005" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
-</footer>
+            <div class="flex justify-center space-x-6 pb-12 border-b border-gray-800">
+                <a href="https://linkedin.com/in/prem-gupta-68826a245" target="_blank" title="LinkedIn" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition duration-300">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="https://github.com/premgpt2005" target="_blank" title="GitHub" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-600 transition duration-300">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="#" title="Instagram / X" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-secondary transition duration-300">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+            </div>
+            
+            <footer class="pt-8 text-sm text-gray-600">
+                <p>&copy; 2026 Prem Gupta. Designed and built with <i class="fas fa-heart text-red-900 mx-1"></i>.</p>
+                <p class="mt-1">Portfolio: <a href="#" class="text-gray-500 hover:text-primary">Portfolio-Prem-Gupta</a></p>
+            </footer>
+        </div>
+    </section>
 
-<script>
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
-</script>
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Simple Navbar Scroll Effect
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg', 'bg-darker/90');
+                navbar.classList.remove('border-b-0');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-darker/90');
+                navbar.classList.add('border-b-0');
+            }
+        });
+    </script>
 </body>
 </html>
